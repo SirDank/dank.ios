@@ -1,8 +1,8 @@
 clear
-echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/main" >> /etc/apk/repositories
-echo "https://dl-cdn.alpinelinux.org/alpine/v3.19/community" >> /etc/apk/repositories
+echo "http://foobar.turbo.net.id/alpine/v3.19/main" >> /etc/apk/repositories
+echo "http://foobar.turbo.net.id/alpine/v3.19/community" >> /etc/apk/repositories
 apk update; apk upgrade
-apk add ntfs-3g git gcc clang ccache patchelf python3-dev py3-pip py3-setuptools py3-wheel py3-rich py3-colorama py3-requests py3-zstandard py3-ordered-set
+apk add nano ntfs-3g git gcc clang ccache patchelf python3-dev py3-pip py3-setuptools py3-wheel py3-rich py3-colorama py3-requests py3-zstandard py3-ordered-set
 python3 --version
 pip install -U dankware nuitka --break-system-packages
 git clone https://github.com/SirDank/dank.ios.git
