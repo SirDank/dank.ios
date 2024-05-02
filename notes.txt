@@ -1,3 +1,5 @@
+# vm stuff
+
 clear
 echo "http://foobar.turbo.net.id/alpine/v3.19/main" >> /etc/apk/repositories
 echo "http://foobar.turbo.net.id/alpine/v3.19/community" >> /etc/apk/repositories
@@ -5,4 +7,17 @@ apk update; apk upgrade
 apk add nano ntfs-3g git gcc clang ccache patchelf python3-dev py3-pip py3-setuptools py3-wheel py3-rich py3-colorama py3-requests py3-zstandard py3-ordered-set
 python3 --version
 pip install -U dankware nuitka --break-system-packages
-git clone https://github.com/SirDank/dank.ios.git
+git clone https://github.com/SirDank/dank.ios.git; cd dank.ios; chmod +x *.sh; chmod +x *.bin; cd ..; mv dank.ios/init-ish-fs.sh ish-fs/; rm -rf dank.ios
+cd ish-fs; ./init-ish-fs.sh; cd ..; chroot ish-fs
+cd root
+
+# build python3.11.9
+
+apk add musl-dev ncurses-dev bzip2-dev gdbm-dev libnsl-dev xz-dev openssl3-dev tk-dev libuuid readline-dev sqlite-dev libffi-dev gcc make automake wget tar gzip
+wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz
+tar -xvf Python-3.11.9.tgz
+cd Python-3.11.9
+./configure --enable-loadable-sqlite-extensions
+make -j$(nproc)
+make install
+
